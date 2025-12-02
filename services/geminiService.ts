@@ -1,7 +1,8 @@
 import { GoogleGenAI, Type } from "@google/genai";
 
 const getClient = () => {
-  const apiKey = process.env.API_KEY;
+  // Safely check for process.env to avoid runtime crashes in browser environments
+  const apiKey = typeof process !== 'undefined' ? process.env.API_KEY : undefined;
   if (!apiKey) return null;
   return new GoogleGenAI({ apiKey });
 };
